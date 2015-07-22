@@ -5,7 +5,8 @@ require('dotenv').config({ path: (__dirname + '/.env') });
 var nodemailer = require("nodemailer"),
     moment = require('moment'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    CronJob = require('cron').CronJob;
 
 
 var transporter = nodemailer.createTransport({
@@ -16,7 +17,7 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-var emailText = fs.readFileSync(path.resolve(__dirname + '/test.txt'));
+var emailText = fs.readFileSync(path.resolve(__dirname + '/today.txt'));
 
 var mailOptions = {
     from: process.env.USER_EMAIL,
@@ -25,9 +26,23 @@ var mailOptions = {
     text: emailText
 };
 
-transporter.sendMail(mailOptions, function(error, info){
-  if(error){
-    return console.log(error);
+Mailer = {
+  sendMail: function(){
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+    });
   }
-  console.log('Message sent: ' + info.response);
+}
+
+var job = new CronJob({
+  cronTime: '*/3 * * * *',
+  onTick: function() {
+    Mailer.sendMail()
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
 });
+job.start();
