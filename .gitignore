@@ -1,3 +1,4 @@
 *.sw?
 .env
 node_modules
+today.txt
