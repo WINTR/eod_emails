@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+require('dotenv').config({ path: (__dirname + '/.env') });
+
+var nodemailer = require("nodemailer"),
+    moment = require('moment'),
+    fs = require('fs'),
+    path = require('path');
+
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.USER_EMAIL,
+      pass: process.env.USER_PASS
+    }
+});
+
+var emailText = fs.readFileSync(path.resolve(__dirname + '/test.txt'));
+
+var mailOptions = {
+    from: process.env.USER_EMAIL,
+    to: process.env.EMAIL_TO,
+    subject: 'EOD email: ' + moment().format('dddd, MMMM Do, YYYY'),
+    text: emailText
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if(error){
+    return console.log(error);
+  }
+  console.log('Message sent: ' + info.response);
+});
