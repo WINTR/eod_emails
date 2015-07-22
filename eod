@@ -9,26 +9,29 @@ var nodemailer = require("nodemailer"),
     CronJob = require('cron').CronJob;
 
 
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: process.env.USER_EMAIL,
-      pass: process.env.USER_PASS
-    }
-});
+Mailer = {
+  transporter: function(){
+    return nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.USER_EMAIL,
+        pass: process.env.USER_PASS
+      }
+    })
+  },
 
-var emailText = fs.readFileSync(path.resolve(__dirname + '/today.txt'));
+ emailText: fs.readFileSync(path.resolve(__dirname + '/today.txt')),
 
-var mailOptions = {
+ mailOptions: {
     from: process.env.USER_EMAIL,
     to: process.env.EMAIL_TO,
     subject: 'EOD email: ' + moment().format('dddd, MMMM Do, YYYY'),
-    text: emailText
-};
+    text: this.emailText
+  },
 
-Mailer = {
   sendMail: function(){
-    transporter.sendMail(mailOptions, function(error, info){
+    var transporter = this.transporter();
+    transporter.sendMail(this.mailOptions, function(error, info){
       if(error){
         return console.log(error);
       }
@@ -37,12 +40,17 @@ Mailer = {
   }
 }
 
-var job = new CronJob({
-  cronTime: '*/3 * * * *',
-  onTick: function() {
-    Mailer.sendMail()
-  },
-  start: false,
-  timeZone: 'America/Los_Angeles'
-});
-job.start();
+var CronRunner = {
+  run: function(){
+    var job = new CronJob({
+      cronTime: '*/1 * * * *',
+      onTick: function() {
+        Mailer.sendMail()
+      },
+      start: true,
+      timeZone: 'America/Los_Angeles'
+    });
+  }
+}
+
+CronRunner.run();
