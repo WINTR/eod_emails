@@ -1,0 +1,27 @@
+{
+  "name": "eod_email",
+  "version": "1.0.0",
+  "description": "Automated EOD emails. What did you do today?",
+  "main": "eod",
+  "dependencies": {
+    "cron": "^1.0.9",
+    "dotenv": "^1.2.0",
+    "fs": "0.0.2",
+    "moment": "^2.10.3",
+    "nodemailer": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WINTR/eod_emails.git"
+  },
+  "author": "Nick Cox (nick@wintr.us)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WINTR/eod_emails/issues"
+  },
+  "homepage": "https://github.com/WINTR/eod_emails#readme"
+}
