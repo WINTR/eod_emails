@@ -55,7 +55,6 @@ var CronRunner = {
         Mailer.sendMail()
       },
       start: true,
-      timeZone: 'America/Los_Angeles'
     });
   }
 }
