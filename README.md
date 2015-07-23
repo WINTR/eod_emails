@@ -18,16 +18,16 @@ RECIPIENT_NAME='James Bond'
 
 4. Open a new terminal window that you don't mind having open all the time and run this:
 
-```sh
-/Users/yourname/path/to/the/eod/script &
-```
+  ```sh
+  /Users/yourname/path/to/the/eod/script &
+  ```
 
-The `&` at the end will have it run in the background.
+  The `&` at the end will have it run in the background.
 
 5. Whenever you've done something that you want to report, put it into the `today.txt` file:
 
-```sh
-echo "Wrote awesome script to automate EOD emails for maximum nerdiness" >> /path/to/eod/dir/today.txt
-```
+  ```sh
+  echo "Wrote awesome script to automate EOD emails for maximum nerdiness" >> /path/to/eod/dir/today.txt
+  ```
 
-_Note: If it's the first time you're running the `echo` command for the day, use the single right angle bracket (`>`) to clear the contents of the file. Subsequent echoes should be run with `>>` to append to the file.
+  _Note: If it's the first time you're running the `echo` command for the day, use the single right angle bracket (`>`) to clear the contents of the file and start fresh. Subsequent echoes should be run with `>>` to append to the file._
