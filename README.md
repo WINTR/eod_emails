@@ -5,7 +5,8 @@ I was sick of forgetting to write my EOD emails to report what I had done that d
 ## Usage
 
 1. Clone this repo to wherever you put your git projects.
-2. Set up your `.env` file in the project root as follows:
+2. Run `npm install` from the project root.
+3. Set up your `.env` file in the project root as follows:
 
   ```md
   USER_EMAIL='email@example.com'
@@ -14,9 +15,9 @@ I was sick of forgetting to write my EOD emails to report what I had done that d
   RECIPIENT_NAME='James Bond'
   ```
 
-3. Currently, the cron job is configured to run at 5:30 M-F. If you need to make changes to that, you can edit the cron format [here](https://github.com/WINTR/eod_emails/blob/master/eod#L52). What's that? You don't have the completely arbitrary and nonsensical cron format memorized? [This handy cron format helper](http://abunchofutils.com/u/computing/cron-format-helper/) should get you started.
+4. Currently, the cron job is configured to run at 5:30 M-F. If you need to make changes to that, you can edit the cron format [here](https://github.com/WINTR/eod_emails/blob/master/eod#L52). What's that? You don't have the completely arbitrary and nonsensical cron format memorized? [This handy cron format helper](http://abunchofutils.com/u/computing/cron-format-helper/) should get you started.
 
-4. Open a new terminal window that you don't mind having open all the time and run this:
+5. Open a new terminal window that you don't mind having open all the time and run this:
 
   ```sh
   /Users/yourname/path/to/the/eod/script &
@@ -24,7 +25,7 @@ I was sick of forgetting to write my EOD emails to report what I had done that d
 
   The `&` at the end will have it run in the background.
 
-5. Whenever you've done something that you want to report, put it into the `today.txt` file:
+6. Whenever you've done something that you want to report, put it into the `today.txt` file:
 
   ```sh
   echo "Wrote awesome script to automate EOD emails for maximum nerdiness" >> /path/to/eod/dir/today.txt
