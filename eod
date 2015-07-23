@@ -21,15 +21,16 @@ Mailer = {
   },
 
  emailText: function(){
-   var greeting = 'Greetings, ' + process.env.RECIPIENT_NAME + "\nThis is an automated email. Here is what I did today:\n";
+   var greeting = 'Greetings, ' + process.env.RECIPIENT_NAME + ".\n\nThis is an automated email. Here is what I did today:\n\n";
    return greeting + fs.readFileSync(path.resolve(__dirname + '/today.txt'));
  },
 
  mailOptions: function(){
   var _self = this;
   return {
-      from: process.env.USER_EMAIL,
-      to: process.env.EMAIL_TO,
+      from: process.env.SENDER_NAME + ' <' + process.env.USER_EMAIL + '>',
+      to: process.env.RECIPIENT_EMAIL,
+      cc: process.env.USER_EMAIL,
       subject: 'EOD email: ' + moment().format('dddd, MMMM Do, YYYY'),
       text: _self.emailText()
     }

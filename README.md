@@ -9,10 +9,11 @@ I was sick of forgetting to write my EOD emails to report what I had done that d
 3. Set up your `.env` file in the project root as follows:
 
   ```md
-  USER_EMAIL='email@example.com'
-  USER_PASS='lolnotmyrealpassword'
-  EMAIL_TO='recipient@example.com'
-  RECIPIENT_NAME='James Bond'
+  SENDER_NAME='Darth Vader'
+  USER_EMAIL='darth_vader@empire.com'
+  USER_PASS='d34thst4r4evr'
+  EMAIL_TO='palpatine@empire.com'
+  RECIPIENT_NAME='Emperor Palpatine'
   ```
 
 4. Currently, the cron job is configured to run at 5:30 M-F. If you need to make changes to that, you can edit the cron format [here](https://github.com/WINTR/eod_emails/blob/master/eod#L52). What's that? You don't have the completely arbitrary and nonsensical cron format memorized? [This handy cron format helper](http://abunchofutils.com/u/computing/cron-format-helper/) should get you started.
